@@ -1,5 +1,5 @@
 import click
-from pathlib import Path
+from healthcare_nlp.setup_data import SetUpData
 
 @click.group()
 @click.option(
@@ -10,10 +10,10 @@ from pathlib import Path
 
 @click.pass_context
 def cli(ctx, cfg_filepath: str):
-    ctx.cfg_filepath = cfg_filepath
+    ctx.obj = SetUpData(config_filepath=cfg_filepath)
 
 @cli.command()
 @click.option("--val", default=1)
 @click.pass_context
 def squared(ctx, val):
-    print(val**2)
+    print(ctx.obj.config["initial_value"] + val**2)
