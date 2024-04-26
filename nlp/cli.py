@@ -1,17 +1,17 @@
 import click
 
-from healthcare_nlp.setup_data import SetUpData
-from healthcare_nlp.src_code.summary import TextSummary
+from nlp.setup_data import SetUpData
+from nlp.src_code.summary import TextSummary
 
 @click.group()
 @click.option(
     "--cfg_filepath",
-    default="/workspaces/healthcare_nlp/healthcare_nlp/config/config.yaml",
+    default="/workspaces/healthcare_nlp/nlp/config/config.yaml",
     help="path to configuration yaml file"
 )
 @click.option(
     "--txt_filepath",
-    default="/workspaces/healthcare_nlp/healthcare_nlp/src_data/semantics_text.txt",
+    default="/workspaces/healthcare_nlp/nlp/src_data/semantics_text.txt",
     help="path to csv with text"
 )
 
