@@ -5,7 +5,7 @@ import sys
 from setuptools import find_packages, setup
 
 def find_version():
-    with open(osp.join("healthcare_nlp", "__init__.py"), "r") as f:
+    with open(osp.join("nlp", "__init__.py"), "r") as f:
         match = re.search(r'__version__="v(\d+\.\d+\.\d+)"', f.read(), re.M)
         if match is not None:
             return match.group(1)
@@ -20,7 +20,7 @@ def get_readme_content():
 install_requires = ["Click>=7.0", "pandas", "numpy", "nltk==3.5"]
 
 setup(
-    name="healthcare_nlp",
+    name="nlp",
     version=find_version(),
     author="Christina Villumsen",
     description="Testing NLP",
@@ -40,6 +40,6 @@ setup(
         "Programming Language :: Python :: 3.12",
         "Programming Language :: Python :: 3.13"
     ],
-    keywords="healthcare_nlp"
+    keywords="nlp"
 
 )
