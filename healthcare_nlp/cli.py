@@ -1,5 +1,7 @@
 import click
+
 from healthcare_nlp.setup_data import SetUpData
+from healthcare_nlp.src_code.summary import TextSummary
 
 @click.group()
 @click.option(
@@ -7,13 +9,18 @@ from healthcare_nlp.setup_data import SetUpData
     default="/workspaces/healthcare_nlp/healthcare_nlp/config/config.yaml",
     help="path to configuration yaml file"
 )
+@click.option(
+    "--txt_filepath",
+    default="/workspaces/healthcare_nlp/healthcare_nlp/src_data/semantics_text.txt",
+    help="path to csv with text"
+)
 
 @click.pass_context
-def cli(ctx, cfg_filepath: str):
-    ctx.obj = SetUpData(config_filepath=cfg_filepath)
+def cli(ctx, cfg_filepath: str, txt_filepath: str):
+    ctx.obj = SetUpData(config_filepath=cfg_filepath, text_filepath=txt_filepath)
 
 @cli.command()
-@click.option("--val", default=1)
+@click.option("--above_avg_factor", default=1.2)
 @click.pass_context
-def squared(ctx, val):
-    print(ctx.obj.config["initial_value"] + val**2)
+def summarize(ctx, above_avg_factor):
+    print(TextSummary(ctx.obj.text, above_avg_factor).summarize())
