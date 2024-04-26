@@ -17,7 +17,7 @@ def get_readme_content():
         content=f.read()
     return content
 
-install_requires = ["Click>=7.0", "pandas", "numpy"]
+install_requires = ["Click>=7.0", "pandas", "numpy", "nltk==3.5"]
 
 setup(
     name="healthcare_nlp",
